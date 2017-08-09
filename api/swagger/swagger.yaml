@@ -26,12 +26,22 @@ paths:
   /categories:
     # binds a127 app logic to a route
     x-swagger-router-controller: category
+    get:
+      description: All Categories
+      tags:
+        - Category
+      operationId: findAll
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/Category"
     post:
       description: New Category
       tags:
         - Category
       # used as the method name of the controller
-      operationId: create
+      operationId: save
       parameters:
         - name: name
           description: name of category

@@ -5,23 +5,22 @@ module.exports = {
   getOne: getOne,
   save: save,
   update: update,
-  delCategory: delCategory
+  delCustomer: delCustomer
 };
 
 // GET
 function findAll(req, res) {
-  res.json("all categories");
+  res.json("all customer");
 }
 
 // GET
 function getOne(req, res) {
-  res.json("find a category");
+  res.json("find a customer");
 }
 
 // POST
 function save(req, res) {
-  var category = {"name": req.body.name, "description": req.body.description};
-  res.json(category);
+  res.json("new customer");
 }
 
 // PUT
@@ -30,6 +29,6 @@ function update(req, res) {
 }
 
 // DELETE
-function delCategory(req, res) {
-  res.json("delete a category")
+function delCustomer(req, res) {
+  res.json("delete a customer")
 }
