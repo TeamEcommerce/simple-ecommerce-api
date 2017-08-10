@@ -1,5 +1,7 @@
 'use strict';
 
+var Category = require('../models/category');
+
 module.exports = {
   findAll: findAll,
   getOne: getOne,
@@ -20,7 +22,13 @@ function getOne(req, res) {
 
 // POST
 function save(req, res) {
-  var category = {"name": req.body.name, "description": req.body.description};
+  var category = new Category();
+  category.name = req.body.name;
+  category.description = req.body.description;
+  category.save(function (err) {
+    if (err) return console.error(err);
+  });
+  console.log(category);
   res.json(category);
 }
 

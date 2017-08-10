@@ -2,13 +2,18 @@
   "name": "simple-ecommerce-api",
   "version": "0.0.1",
   "private": true,
-  "description": "New Swagger API Project",
-  "keywords": [],
-  "author": "",
-  "license": "",
+  "description": "Simple Ecommerce API",
+  "keywords": [
+    "api",
+    "ecommerce",
+    "swagger"
+  ],
+  "author": "TeamEcommerce",
+  "license": "MIT",
   "main": "app.js",
   "dependencies": {
     "express": "^4.12.3",
+    "mongoose": "^4.11.6",
     "swagger-express-mw": "^0.1.0",
     "swagger-tools": "^0.10.1"
   },
