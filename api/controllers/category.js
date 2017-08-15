@@ -12,7 +12,8 @@ module.exports = {
 
 // GET
 function findAll(req, res) {
-  res.json("all categories");
+  var category = new Category();
+  res.json({ categories: category.find()});
 }
 
 // GET
@@ -28,7 +29,6 @@ function save(req, res) {
   category.save(function (err) {
     if (err) return console.error(err);
   });
-  console.log(category);
   res.json(category);
 }
 
