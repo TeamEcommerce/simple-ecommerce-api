@@ -10,7 +10,7 @@
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/Category"
+            $ref: "#/definitions/ListCategories"
     post:
       description: New Category
       tags:

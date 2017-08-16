@@ -10,3 +10,16 @@
     required:
       - name
       - description
+  ListCategories:
+    properties:
+      category:
+        type: array
+        items:
+          type: object
+          properties:
+            name:
+              type: string
+              description: name of category
+            description:
+              type: string
+              description: description of category

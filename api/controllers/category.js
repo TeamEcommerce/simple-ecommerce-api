@@ -12,8 +12,9 @@ module.exports = {
 
 // GET
 function findAll(req, res) {
-  var category = new Category();
-  res.json({ categories: category.find()});
+  Category.find({}, function(err, categories) {
+      res.json(categories);
+  });
 }
 
 // GET

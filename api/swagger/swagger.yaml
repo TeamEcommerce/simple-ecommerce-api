@@ -35,7 +35,7 @@ paths:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/Category"
+            $ref: "#/definitions/ListCategories"
     post:
       description: New Category
       tags:
@@ -81,3 +81,16 @@ definitions:
     required:
       - name
       - description
+  ListCategories:
+    properties:
+      category:
+        type: array
+        items:
+          type: object
+          properties:
+            name:
+              type: string
+              description: name of category
+            description:
+              type: string
+              description: description of category
