@@ -13,13 +13,15 @@ module.exports = {
 // GET
 function findAll(req, res) {
   Category.find({}, function(err, categories) {
-      res.json(categories);
+    res.json(categories);
   });
 }
 
 // GET
 function getOne(req, res) {
-  res.json("find a category");
+  Category.findOne({_id: req.swagger.params.id.value}, function (err, category) {
+    res.json(category);
+  });
 }
 
 // POST

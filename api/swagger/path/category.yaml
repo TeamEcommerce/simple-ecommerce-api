@@ -1,3 +1,21 @@
+  /categories/{id}:
+    x-swagger-router-controller: category
+    get:
+      description: Find a Category
+      tags:
+        - Category
+      operationId: getOne
+      parameters:
+        - name: id
+          type: string
+          in: path
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/Category"
+
   /categories:
     # binds a127 app logic to a route
     x-swagger-router-controller: category
