@@ -29,12 +29,33 @@ paths:
       description: Find a Category
       tags:
         - Category
-      operationId: getOne
+      operationId: findACategory
       parameters:
         - name: id
           type: string
           in: path
           required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/Category"
+    patch:
+      description: Find a Category
+      tags:
+        - Category
+      operationId: updateCategory
+      parameters:
+        - name: id
+          type: string
+          in: path
+          required: true
+        - name: category
+          description: update a category
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/Category"
       responses:
         "200":
           description: Success
@@ -47,7 +68,7 @@ paths:
       description: All Categories
       tags:
         - Category
-      operationId: findAll
+      operationId: allCategories
       responses:
         "200":
           description: Success
@@ -58,10 +79,10 @@ paths:
       tags:
         - Category
       # used as the method name of the controller
-      operationId: save
+      operationId: newCategory
       parameters:
-        - name: name
-          description: name of category
+        - name: category
+          description: create a category
           in: body
           required: true
           schema:

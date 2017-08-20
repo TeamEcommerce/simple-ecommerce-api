@@ -3,11 +3,11 @@
 var Category = require('../models/category');
 
 module.exports = {
-  findAll: findAll,
-  getOne: getOne,
-  save: save,
-  update: update,
-  delCategory: delCategory
+  allCategories: findAll,
+  findACategory: getOne,
+  newCategory: save,
+  updateCategory: update,
+  deleteCategory: delCategory
 };
 
 // GET
@@ -37,7 +37,21 @@ function save(req, res) {
 
 // PUT
 function update(req, res) {
-  res.json("update");
+  var id = req.swagger.params.id.value;
+  var query = {'_id': id};
+  var category = new Category({
+    'name': req.body.name,
+    'description': req.body.description
+  });
+  var updateCategory = category.toObject();
+  delete updateCategory._id;
+  Category.findOneAndUpdate(query, updateCategory, {upsert:true}, function(err, cat) {
+    if(err) console.log(err)
+  });
+  Category.findOne({_id: id}, function (err, cat) {
+    if(err) console.log(err)
+    res.json(cat);
+  });
 }
 
 // DELETE
