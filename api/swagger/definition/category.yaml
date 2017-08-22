@@ -10,6 +10,15 @@
     required:
       - name
       - description
+  UpdateCategory:
+    type: object
+    properties:
+      name:
+        type: string
+        description: name of category
+      description:
+        type: string
+        description: description of category
   ListCategories:
     properties:
       category:

@@ -55,7 +55,7 @@ paths:
           in: body
           required: true
           schema:
-            $ref: "#/definitions/Category"
+            $ref: "#/definitions/UpdateCategory"
       responses:
         "200":
           description: Success
@@ -119,6 +119,15 @@ definitions:
     required:
       - name
       - description
+  UpdateCategory:
+    type: object
+    properties:
+      name:
+        type: string
+        description: name of category
+      description:
+        type: string
+        description: description of category
   ListCategories:
     properties:
       category:

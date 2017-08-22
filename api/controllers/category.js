@@ -39,10 +39,13 @@ function save(req, res) {
 function update(req, res) {
   var id = req.swagger.params.id.value;
   var query = {'_id': id};
-  var category = new Category({
-    'name': req.body.name,
-    'description': req.body.description
-  });
+  var category = new Category();
+  if(req.body.name != undefined) {
+    category.name = req.body.name;
+  }
+  if(req.body.description != undefined) {
+    category.description = req.body.description;
+  }
   var updateCategory = category.toObject();
   delete updateCategory._id;
   Category.findOneAndUpdate(query, updateCategory, {upsert:true}, function(err, cat) {

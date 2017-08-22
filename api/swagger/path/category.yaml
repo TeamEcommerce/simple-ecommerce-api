@@ -30,7 +30,7 @@
           in: body
           required: true
           schema:
-            $ref: "#/definitions/Category"
+            $ref: "#/definitions/UpdateCategory"
       responses:
         "200":
           description: Success
