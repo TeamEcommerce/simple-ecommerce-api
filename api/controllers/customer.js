@@ -1,5 +1,7 @@
 'use strict';
 
+var Customer = require('../models/customer');
+
 module.exports = {
   allCustomer: findAll,
   findACustomer: getOne,
@@ -20,7 +22,19 @@ function getOne(req, res) {
 
 // POST
 function save(req, res) {
-  res.json("new customer");
+  var customer = new Customer();
+  customer.first_name = req.body.first_name;
+  customer.last_name  = req.body.last_name;
+  customer.email      = req.body.email;
+  customer.password   = req.body.password;
+  customer.phone      = req.body.phone;
+  customer.address    = req.body.address;
+  customer.city       = req.body.city;
+  customer.country    = req.body.country;
+  customer.save(function (err) {
+    if (err) return console.error(err);
+  });
+  res.json(customer);
 }
 
 // PUT
