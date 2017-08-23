@@ -12,12 +12,16 @@ module.exports = {
 
 // GET
 function findAll(req, res) {
-  res.json("all customer");
+  Customer.find({}, function(err, customers) {
+    res.json(customers);
+  });
 }
 
 // GET
 function getOne(req, res) {
-  res.json("find a customer");
+  Customer.findOne({_id: req.swagger.params.id.value}, function (err, customer) {
+    res.json(customer);
+  });
 }
 
 // POST
