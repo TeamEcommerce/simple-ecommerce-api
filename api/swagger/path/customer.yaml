@@ -1,10 +1,10 @@
-  /categories/{id}:
-    x-swagger-router-controller: category
+  /customers/{id}:
+    x-swagger-router-controller: customer
     get:
-      description: Find a Category
+      description: Find a Customer
       tags:
-        - Category
-      operationId: findACategory
+        - Customer
+      operationId: findACustomer
       parameters:
         - name: id
           type: string
@@ -14,61 +14,61 @@
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/Category"
+            $ref: "#/definitions/Customer"
     patch:
-      description: Update a Category
+      description: Update a Customer
       tags:
-        - Category
-      operationId: updateCategory
+        - Customer
+      operationId: updateCustomer
       parameters:
         - name: id
           type: string
           in: path
           required: true
-        - name: category
-          description: update a category
+        - name: customer
+          description: update a customer
           in: body
           required: true
           schema:
-            $ref: "#/definitions/UpdateCategory"
+            $ref: "#/definitions/UpdateCustomer"
       responses:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/Category"
+            $ref: "#/definitions/Customer"
 
-  /categories:
+  /customers:
     # binds a127 app logic to a route
-    x-swagger-router-controller: category
+    x-swagger-router-controller: customer
     get:
-      description: All Categories
+      description: All Customers
       tags:
-        - Category
-      operationId: allCategories
+        - Customer
+      operationId: allCustomer
       responses:
         "200":
           description: Success
           schema:
-            $ref: "#/definitions/ListCategories"
+            $ref: "#/definitions/ListCustomers"
     post:
-      description: New Category
+      description: New Customer
       tags:
-        - Category
+        - Customer
       # used as the method name of the controller
-      operationId: newCategory
+      operationId: newCustomer
       parameters:
-        - name: category
-          description: create a category
+        - name: customer
+          description: create a customer
           in: body
           required: true
           schema:
-            $ref: "#/definitions/Category"
+            $ref: "#/definitions/Customer"
       responses:
         "200":
           description: Success
           schema:
             # a pointer to a definition
-            $ref: "#/definitions/Category"
+            $ref: "#/definitions/Customer"
         # responses may fall through to errors
         default:
           description: Error

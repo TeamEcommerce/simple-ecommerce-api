@@ -1,0 +1,70 @@
+  Customer:
+    type: object
+    properties:
+      first_name:
+        type: string
+      last_name:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+      address:
+        type: string
+      city:
+        type: string
+      country:
+        type: string
+    required:
+      - first_name
+      - last_name
+      - email
+      - password
+      - phone
+      - address
+      - city
+      - country
+  UpdateCustomer:
+    type: object
+    properties:
+      first_name:
+        type: string
+      last_name:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+      address:
+        type: string
+      city:
+        type: string
+      country:
+        type: string
+  ListCustomers:
+    properties:
+      category:
+        type: array
+        items:
+          type: object
+          properties:
+            first_name:
+              type: string
+            last_name:
+              type: string
+            email:
+              type: string
+            password:
+              type: string
+            phone:
+              type: string
+            address:
+              type: string
+            city:
+              type: string
+            country:
+              type: string

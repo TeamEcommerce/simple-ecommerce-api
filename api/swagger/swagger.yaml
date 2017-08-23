@@ -22,6 +22,10 @@ tags:
     description: All Categories
     externalDocs:
       url: http://docs.my-api.com/category.html
+  - name: Customer
+    description: All Customers
+    externalDocs:
+      url: http://docs.my-api.com/cutomer.html
 paths:
   /categories/{id}:
     x-swagger-router-controller: category
@@ -41,7 +45,7 @@ paths:
           schema:
             $ref: "#/definitions/Category"
     patch:
-      description: Find a Category
+      description: Update a Category
       tags:
         - Category
       operationId: updateCategory
@@ -98,6 +102,81 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /customers/{id}:
+    x-swagger-router-controller: customer
+    get:
+      description: Find a Customer
+      tags:
+        - Customer
+      operationId: findACustomer
+      parameters:
+        - name: id
+          type: string
+          in: path
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/Customer"
+    patch:
+      description: Update a Customer
+      tags:
+        - Customer
+      operationId: updateCustomer
+      parameters:
+        - name: id
+          type: string
+          in: path
+          required: true
+        - name: customer
+          description: update a customer
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/UpdateCustomer"
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/Customer"
+  /customers:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: customer
+    get:
+      description: All Customers
+      tags:
+        - Customer
+      operationId: allCustomer
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ListCustomers"
+    post:
+      description: New Customer
+      tags:
+        - Customer
+      # used as the method name of the controller
+      operationId: newCustomer
+      parameters:
+        - name: customer
+          description: create a customer
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/Customer"
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/Customer"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 definitions:
@@ -141,3 +220,73 @@ definitions:
             description:
               type: string
               description: description of category
+  Customer:
+    type: object
+    properties:
+      first_name:
+        type: string
+      last_name:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+      address:
+        type: string
+      city:
+        type: string
+      country:
+        type: string
+    required:
+      - first_name
+      - last_name
+      - email
+      - password
+      - phone
+      - address
+      - city
+      - country
+  UpdateCustomer:
+    type: object
+    properties:
+      first_name:
+        type: string
+      last_name:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+      address:
+        type: string
+      city:
+        type: string
+      country:
+        type: string
+  ListCustomers:
+    properties:
+      category:
+        type: array
+        items:
+          type: object
+          properties:
+            first_name:
+              type: string
+            last_name:
+              type: string
+            email:
+              type: string
+            password:
+              type: string
+            phone:
+              type: string
+            address:
+              type: string
+            city:
+              type: string
+            country:
+              type: string

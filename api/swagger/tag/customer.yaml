@@ -1,0 +1,4 @@
+  - name: Customer
+    description: All Customers
+    externalDocs:
+      url: http://docs.my-api.com/cutomer.html

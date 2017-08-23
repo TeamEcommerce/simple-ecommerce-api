@@ -1,11 +1,11 @@
 'use strict';
 
 module.exports = {
-  findAll: findAll,
-  getOne: getOne,
-  save: save,
-  update: update,
-  delCustomer: delCustomer
+  allCustomer: findAll,
+  findACustomer: getOne,
+  newCustomer: save,
+  updateCustomer: update,
+  deleteCustomer: delCustomer
 };
 
 // GET
