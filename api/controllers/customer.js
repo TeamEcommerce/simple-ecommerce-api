@@ -43,7 +43,45 @@ function save(req, res) {
 
 // PUT
 function update(req, res) {
-  res.json("update");
+  var id = req.swagger.params.id.value;
+  var query = {'_id': id};
+  var customer = new Customer();
+  if(req.body.first_name != undefined) {
+    customer.first_name = req.body.first_name;
+  }
+  if(req.body.last_name != undefined) {
+    customer.last_name = req.body.last_name;
+  }
+  if(req.body.email != undefined) {
+    customer.email = req.body.email;
+  }
+  if(req.body.password != undefined) {
+    customer.password = req.body.password;
+  }
+  if(req.body.phone != undefined) {
+    customer.phone = req.body.phone;
+  }
+  if(req.body.address != undefined) {
+    customer.address = req.body.address;
+  }
+  if(req.body.city != undefined) {
+    customer.city = req.body.city;
+  }
+  if(req.body.country != undefined) {
+    customer.country = req.body.country;
+  }
+  if(req.body.active != undefined) {
+    customer.active = req.body.active;
+  }
+  var updateCustomer = customer.toObject();
+  delete updateCustomer._id;
+  Customer.findOneAndUpdate(query, updateCustomer, {upsert:true}, function(err, cos) {
+    if(err) console.log(err)
+  });
+  Customer.findOne({_id: id}, function (err, cos) {
+    if(err) console.log(err)
+    res.json(cos);
+  });
 }
 
 // DELETE

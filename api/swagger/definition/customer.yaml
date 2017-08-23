@@ -45,6 +45,8 @@
         type: string
       country:
         type: string
+      active:
+        type: boolean
   ListCustomers:
     properties:
       category:
