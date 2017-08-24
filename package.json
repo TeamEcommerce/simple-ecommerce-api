@@ -12,6 +12,7 @@
   "license": "MIT",
   "main": "app.js",
   "dependencies": {
+    "bcrypt": "^1.0.3",
     "express": "^4.12.3",
     "mongoose": "^4.11.6",
     "swagger-express-mw": "^0.1.0",

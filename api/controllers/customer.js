@@ -1,5 +1,7 @@
 'use strict';
 
+var bcrypt = require('bcrypt');
+const saltRounds = 10;
 var Customer = require('../models/customer');
 
 module.exports = {
@@ -30,15 +32,18 @@ function save(req, res) {
   customer.first_name = req.body.first_name;
   customer.last_name  = req.body.last_name;
   customer.email      = req.body.email;
-  customer.password   = req.body.password;
   customer.phone      = req.body.phone;
   customer.address    = req.body.address;
   customer.city       = req.body.city;
   customer.country    = req.body.country;
-  customer.save(function (err) {
-    if (err) return console.error(err);
+  bcrypt.hash(req.body.password, saltRounds, function(err, hash) {
+    if(err) return console.error(err)
+    customer.password = hash;
+    customer.save(function (err) {
+      if (err) return console.error(err);
+    });
+    res.json(customer);
   });
-  res.json(customer);
 }
 
 // PUT
@@ -51,12 +56,6 @@ function update(req, res) {
   }
   if(req.body.last_name != undefined) {
     customer.last_name = req.body.last_name;
-  }
-  if(req.body.email != undefined) {
-    customer.email = req.body.email;
-  }
-  if(req.body.password != undefined) {
-    customer.password = req.body.password;
   }
   if(req.body.phone != undefined) {
     customer.phone = req.body.phone;
