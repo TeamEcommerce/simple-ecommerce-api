@@ -26,6 +26,10 @@ tags:
     description: All Customers
     externalDocs:
       url: http://docs.my-api.com/cutomer.html
+  - name: User
+    description: All Users
+    externalDocs:
+      url: http://docs.my-api.com/user.html
 paths:
   /categories/{id}:
     x-swagger-router-controller: category
@@ -177,6 +181,81 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /users/{id}:
+    x-swagger-router-controller: user
+    get:
+      description: Find a User
+      tags:
+        - User
+      operationId: findAUser
+      parameters:
+        - name: id
+          type: string
+          in: path
+          required: true
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/User"
+    patch:
+      description: Update a User
+      tags:
+        - User
+      operationId: updateUser
+      parameters:
+        - name: id
+          type: string
+          in: path
+          required: true
+        - name: user
+          description: update a user
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/UpdateUser"
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/User"
+  /users:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: user
+    get:
+      description: All Users
+      tags:
+        - User
+      operationId: allUser
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/ListUsers"
+    post:
+      description: New User
+      tags:
+        - User
+      # used as the method name of the controller
+      operationId: newUser
+      parameters:
+        - name: user
+          description: create a user
+          in: body
+          required: true
+          schema:
+            $ref: "#/definitions/User"
+      responses:
+        "200":
+          description: Success
+          schema:
+            # a pointer to a definition
+            $ref: "#/definitions/User"
+        # responses may fall through to errors
+        default:
+          description: Error
+          schema:
+            $ref: "#/definitions/ErrorResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 definitions:
@@ -291,4 +370,46 @@ definitions:
             city:
               type: string
             country:
+              type: string
+  User:
+    type: object
+    properties:
+      first_name:
+        type: string
+      last_name:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+    required:
+      - first_name
+      - last_name
+      - email
+      - password
+  UpdateUser:
+    type: object
+    properties:
+      first_name:
+        type: string
+      last_name:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+  ListUsers:
+    properties:
+      user:
+        type: array
+        items:
+          type: object
+          properties:
+            first_name:
+              type: string
+            last_name:
+              type: string
+            email:
+              type: string
+            password:
               type: string
