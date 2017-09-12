@@ -1,0 +1,8 @@
+  Image:
+    type: object
+    properties:
+      source:
+        type: string
+        description: image resource
+    required:
+      - source

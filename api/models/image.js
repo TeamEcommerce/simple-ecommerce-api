@@ -6,12 +6,12 @@ var Schema = mongoose.Schema;
 var ImageSchema = new Schema({
   original_name: { type: String },
   mimetype: { type: String },
-  type: { type: String },
+  type: { type: String, default: 'product' },
   destination: { type: String },
   filename: { type: String },
-  path: { type: String },
+  path: { type: String, default: '/uploads/' },
   size: { type: Number },
-  active: { type: Boolean, default: true },
+  active: { type: Boolean },
   created_date: { type: Date, default: Date.now }
 });
 

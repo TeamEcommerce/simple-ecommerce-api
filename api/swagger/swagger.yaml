@@ -30,6 +30,10 @@ tags:
     description: All Users
     externalDocs:
       url: http://docs.my-api.com/user.html
+  - name: Image
+    description: All Images
+    externalDocs:
+      url: http://docs.my-api.com/image.html
 paths:
   /categories/{id}:
     x-swagger-router-controller: category
@@ -256,10 +260,37 @@ paths:
           description: Error
           schema:
             $ref: "#/definitions/ErrorResponse"
+  /images:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: image
+    post:
+      description: Add Image
+      tags:
+        - Image
+      # used as the method name of the controller
+      operationId: newImage
+      consumes:
+         - multipart/form-data
+      parameters:
+        - name: source
+          description: upload a image
+          in: formData
+          type: file
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/CommonResponse"
   /swagger:
     x-swagger-pipe: swagger_raw
 definitions:
   ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  CommonResponse:
     required:
       - message
     properties:

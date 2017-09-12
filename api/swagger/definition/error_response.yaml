@@ -4,3 +4,9 @@
     properties:
       message:
         type: string
+  CommonResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string

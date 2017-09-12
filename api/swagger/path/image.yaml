@@ -1,0 +1,21 @@
+  /images:
+    # binds a127 app logic to a route
+    x-swagger-router-controller: image
+    post:
+      description: Add Image
+      tags:
+        - Image
+      # used as the method name of the controller
+      operationId: newImage
+      consumes:
+         - multipart/form-data
+      parameters:
+        - name: source
+          description: upload a image
+          in: formData
+          type: file
+      responses:
+        "200":
+          description: Success
+          schema:
+            $ref: "#/definitions/CommonResponse"

@@ -1,0 +1,12 @@
+  Product:
+    type: object
+    properties:
+      name:
+        type: string
+        description: name of category
+      description:
+        type: string
+        description: description of category
+    required:
+      - name
+      - description
