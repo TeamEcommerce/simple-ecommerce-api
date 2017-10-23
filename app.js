@@ -44,7 +44,7 @@ SwaggerExpress.create(config, function(err, swaggerExpress) {
   // install middleware
   swaggerExpress.register(app);
 
-  var port = process.env.PORT || 10010;
+  var port = process.env.PORT || 4000;
   app.listen(port);
   console.log("listening in port => " + port);
 
